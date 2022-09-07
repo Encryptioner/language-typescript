@@ -1,0 +1,8 @@
+node_modules
+yarn-error.log
+
+.vscode/*
+!.vscode/*.example.json
+
+# ignore source map for typescript/css file
+*.map
