@@ -21,7 +21,7 @@ module.exports = {
   ],
   settings: {
     'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
+      '@typescript-eslint/parser': ['.ts'],
     },
     'import/resolver': {
       node: {
@@ -89,14 +89,6 @@ module.exports = {
     'no-restricted-imports': ['error', {
       patterns: ['../*'],
     }],
-    'import/no-extraneous-dependencies':
-      ['error', {
-        devDependencies: [
-          '**/*.spec.ts',
-          '**/*.test.ts',
-          'src/jest.utils.ts',
-        ],
-      }],
     '@typescript-eslint/no-useless-constructor': ['error'],
     '@typescript-eslint/indent': ['error', 2],
     '@typescript-eslint/no-use-before-define': 'error',
