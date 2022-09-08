@@ -6,7 +6,7 @@
  * Created on Thu Sep 08 2022
  */
 
-// Alternate runtime efficient iterative solution (copied)
+// Alternate solution (copied)
 // REFERENCE: https://leetcode.com/problems/binary-tree-inorder-traversal/
 
 // Definition for a binary tree node.
@@ -28,7 +28,7 @@ class TreeNode {
   }
 }
 
-function inorderTraversal(root: TreeNode | null): number[] {
+function inorderTraversal1(root: TreeNode | null): number[] {
   if (root === null) {
     return [];
   }
@@ -55,6 +55,22 @@ function inorderTraversal(root: TreeNode | null): number[] {
   }
   return answer;
 }
+
+function inorderTraversal2(root: TreeNode | null): number[] {
+  const result: number[] = [];
+
+  function traverse(node: TreeNode | null): void {
+    if (node) {
+      traverse(node.left);
+      result.push(node.val);
+      traverse(node.right);
+    }
+  }
+
+  traverse(root);
+  return result;
+}
+
 const tests: (TreeNode | null)[] = [
   {
     val: 1,
@@ -108,7 +124,8 @@ const tests: (TreeNode | null)[] = [
 
 function run(): void {
   tests.forEach((test) => {
-    console.log(inorderTraversal(test));
+    console.log(inorderTraversal1(test));
+    console.log(inorderTraversal2(test));
   });
 }
 
