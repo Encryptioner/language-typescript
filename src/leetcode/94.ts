@@ -3,11 +3,11 @@
  *
  * https://encryptioner.github.io/
  *
- * Created on Wed Sep 07 2022
+ * Created on Thu Sep 08 2022
  */
 
 // Accepted
-// REFERENCE: https://leetcode.com/problems/construct-string-from-binary-tree/
+// REFERENCE: https://leetcode.com/problems/binary-tree-inorder-traversal/
 
 // Definition for a binary tree node.
 class TreeNode {
@@ -33,12 +33,21 @@ function tree2str(root: TreeNode | null): string {
     return '';
   }
   if (root.left === null && root.right === null) {
-    return `${root.val}`;
+    return `${root.val},`;
   }
   if (root.right == null) {
-    return `${root.val}(${tree2str(root.left)})`;
+    return `${tree2str(root.left)},${root.val},`;
   }
-  return `${root.val}(${tree2str(root.left)})(${tree2str(root.right)})`;
+  return `${tree2str(root.left)},${root.val},${tree2str(root.right)},`;
+}
+
+function inorderTraversal(root: TreeNode | null): number[] {
+  const str = tree2str(root);
+  return str.split(',')
+    .filter((s) => !!s.length)
+    .map((s) => parseInt(
+      s, 10,
+    ));
 }
 
 const tests: (TreeNode | null)[] = [
@@ -76,17 +85,31 @@ const tests: (TreeNode | null)[] = [
       right: null,
     },
   },
+  {
+    val: 1,
+    left: null,
+    right: {
+      val: 2,
+      left: {
+        val: 3,
+        left: null,
+        right: null,
+      },
+      right: null,
+    },
+  },
   null,
 ];
 
 function run(): void {
   tests.forEach((test) => {
-    console.log(tree2str(test));
+    console.log(inorderTraversal(test));
   });
 }
 
 run();
 
-// NOTE: For duplicate identifier problem
-// REFERENCE: https://bobbyhadz.com/blog/typescript-duplicate-identifier
 export {};
+
+// leetcode input
+// [37,-34,-48,null,-100,-100,48,null,null,null,null,-54,null,-71,-22,null,null,null,8]
