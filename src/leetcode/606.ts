@@ -85,3 +85,7 @@ function run(): void {
 }
 
 run();
+
+// NOTE: For duplicate identifier problem
+// REFERENCE: https://bobbyhadz.com/blog/typescript-duplicate-identifier
+export {};
